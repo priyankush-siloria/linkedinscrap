@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section-approved">
+          <div class="box-header box-main-header-sub-content-approved">
+              <a href="#">All scraped data</a>
+
+              <button type="button" class="btn btn-primary changestatus" value="P"> Pending All</button>
+              <button type="button" class="btn btn-success changestatus" value="A"> Approve  All</button>
+              <button type="button" class="btn btn-danger changestatus" value="R"> Reject All</button>
+              </div>
+      
+              <div class="box-body box-main-body">
+
+            <form class="form-horizontal" method="post" action="{% url 'actions' %}" id="actionForm">
+
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Action</label>
+                  {% csrf_token %}
+                  <div class="col-sm-8">
+                    <select class="form-control" name="action" id="action">
+                      <option value="" disabled selected>Choose Action</option>
+                      <option value="delete"> Delete Selected</option>
+                      <option value="accept"> Accept Selected</option>
+                      <option value="reject"> Reject Selected</option>
+                    </select>
+                    <input type="hidden" name="ids">
+                  </div>
+                   <button type="submit" class="btn btn-info  col-sm-1 ">Sign in</button>
+                   <div class="col-sm-1"></div>
+
+                </div>
+              </div>
+            </form>
+
+
+              <table id="example_all_scraped" class="table table-bordered table-hover approved-database">
+               
+                <thead>
+                
+             <tr>
+              <th>Select</th>
+               <th>ID</th>
+                  <th>COMPANY NAME</th>
+                  <th>NAME</th>
+                  <th>SENIORITY LEVEL</th>
+                  <th>FUNCTION</th>
+                 <th>DEGREE</th>
+                 <th>GRAD. YEAR START</th>
+                 <th>GRAD. YEAR END</th>
+                 <th>URL</th>
+                 <th>NTRY DATE</th>
+                 <th>AUTOMATION NAME</th>
+                 <th>DUPLICATE</th>
+                 <th class='notexport'>STATUS</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {% for datas in scraped_data %}
+                <tr>
+                  <td><input type="checkbox" value="{{datas.id}}" onclick="addval($(this))"></td>
+                  <td> {{forloop.counter }} </td>
+                 <td>{{ datas.companyname }}</td>
+                  <td>{{ datas.name }}</td>
+                  <td>{{ datas.senioritylevel }}</td>
+                  <td>{{ datas.function }}</td>
+                  <td>{{ datas.degree }}</td>
+                  <td>{{ datas.gradyearstart }}</td>
+                   <td>{{ datas.gradyearend }}</td>
+                   <td><a href="{{ datas.url }}" target="_blank">Go to profile</a></td>
+                   <td>{{ datas.automation.created_at }}</td>
+                    <td>{{ datas.automation.name }}</td>
+                    <td>
+                       {% if datas.isduplicated %}
+                        Yes
+                      {% else %}
+                        No
+                      {% endif %}
+                     </td>
+                    <td>
+                      <input type="radio" class="status" name="status{{forloop.counter }}" checked value="P" data-id="{{ datas.id }}">Pending<br>
+                      <input type="radio" class="status" name="status{{forloop.counter }}" value="A" data-id="{{ datas.id }}">Approve<br>
+                      <input type="radio" class="status" name="status{{forloop.counter }}" value="R" data-id="{{ datas.id }}">Reject<br>
+                    </td>
+                </tr>
+                {% endfor %}
+
+              
+                
+                </tbody>
+              </table>
+
+
+
+
+            </div>
+            <!-- /.box-body -->
+
+
+          </div>
+        </div>
+
+
+
+          </div>
+<script type="text/javascript">
+  var token = "{{ csrf_token }}";
+
+  var ids = []
+  function addval(value) {
+    if (value.is(":checked")){
+      ids.push(value.val());
+    }
+    else{
+      var remove_Item = value.val();
+      ids.splice($.inArray(remove_Item, ids),1);
+    }
+  }
+
+</script>
+
+  <!-- /.content-wrapper -->
+{% endblock %}

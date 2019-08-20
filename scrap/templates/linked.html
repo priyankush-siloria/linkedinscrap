@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section">
+          
+        <div class="messages">
+              {% if messages %}
+                  {% for message in messages %}
+                  <p>{{ message }}</p>
+                  {% endfor %}
+              {% endif %}
+            </div>
+          <form class="form-horizontal main-box-section-form" action="{% url 'linked' %}" method="post">
+            {% csrf_token %}
+              <div class="box-body">
+                <h3>Linked account information</h3>
+
+                <div class="form-group main-box-section-form-one">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Email  :</label>
+
+                    <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email">
+                    </div>
+                <div class="form-group main-box-section-form-one">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password  :</label>
+
+                
+                    <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
+                  
+                </div>
+
+
+                
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer-test-connection">
+                <button type="submit" class="btn btn-default">Test connection</button>
+                <button type="submit" class="btn btn-info pull-right">save</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+
+        
+          </div>
+
+
+               </div>
+           </div>
+    <!-- /.content -->
+
+
+  <!-- /.content-wrapper -->
+{% endblock %}

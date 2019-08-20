@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section">
+            <div class="messages">
+              {% if messages %}
+                  {% for message in messages %}
+                  <p>{{ message }}</p>
+                  {% endfor %}
+              {% endif %}
+            </div>
+          <div class="box-header box-main-header-sub-content">
+              <h3 class="box-title">Edit User</h3>
+          </div>
+      
+           <form class="box-main-section-form-input-section" action="{% url 'edit_automation' data.id %}" method="POST">
+            {% csrf_token %}
+            <div class="combine-group-section">
+            <label class="name">NAME</label>
+            <input type="text" name="name" value="{{data.name}}" placeholder="" required>
+          </div>
+
+          <div class="combine-group-section">
+            <label class="name">Geography</label>
+            <select name="geography">
+             <option value="0">Don't Apply</option>
+             {% for geo in geography %}
+              <option value="{{geo.id}}" {% if data.geography_status %}{% if geo == data.geography %} selected="selected"  {% endif %}{% endif %} >{{geo.title}}</option>
+              {% endfor %}
+            </select>
+              </div>
+            <div class="combine-group-section">
+            <label class="name">Seniority level</label>
+            <select name="srlevel">
+              <option value="0">Don't Apply</option>
+           {% for sr_lvl in seniority_level %}
+              <option value="{{sr_lvl.id}}" {% if data.srlevel_status %}{% if sr_lvl == data.srlevel %} selected="selected"  {% endif %}{% endif %}>{{sr_lvl.title}}</option>
+           {% endfor %}
+            
+            </select>
+              </div>
+<input type="hidden" name="auto_id" value="{{data.id}}">
+            <div class="combine-group-section">
+                <label class="name">Years at company</label>
+                <select name="period">
+                  <option value="0">Don't Apply</option>
+               {% for year in year_atCompany %} 
+                  <option value="{{year.id}}" {% if data.period_status %}{% if year == data.period %} selected="selected"  {% endif %}{% endif %}>{{year.title}}</option>
+              {% endfor %}
+             
+                </select>
+              </div>
+              <div class="combine-group-section">
+                <label class="name">Years of experience</label>
+                <select name="experience">
+                  <option value="0">Don't Apply</option>
+               {% for year in year_of_experience %} 
+                  <option value="{{year.id}}" {% if data.yearsofexperience_status %}{% if year == data.yearsofexperience %} selected="selected"  {% endif %}{% endif %}>{{year.title}}</option>
+              {% endfor %}
+             
+                </select>
+              </div>
+              <div class="combine-group-section">
+            <label class="name">function</label>
+            <select name="functions">
+              <option value="0">Don't Apply</option>
+             _{% for fun_at_comapny in function_at_comapny%}
+              <option value="{{fun_at_comapny.id}}" {% if data.functionsatcompanyl_status %}{% if fun_at_comapny == data.functionsatcompany %} selected="selected"  {% endif %}{% endif %}>{{fun_at_comapny.title}}</option>
+              {% endfor %}
+            </select>
+              </div>
+
+
+              <div class="combine-group-section-main-two">
+            <label class="name">frequency day</label>
+            <div class="combine-group-section-main-three">
+            <h3>Day</h3>
+            <select name="day">
+              {% for i in days.days_choices.field.choices  %}
+                    <option value="{{i.0}}"  {% if i.0 == data.day %} selected="selected" {% endif %}>{{i.1}}</option>
+              {% endfor %}
+            </select>
+</div>
+<div class="combine-group-section-main-three four">
+                <h3>Rate</h3>
+            <select name="rate">
+              {% for rt in rate.rate_choices.field.choices %}
+                    <option value="{{rt.0}}" {% if rt.0 == data.rate %} selected="selected" {% endif %}> {{rt.1}}</option>
+             {% endfor %}
+            </select>
+              </div>
+            </div>
+
+          <div class="combine-group-section-submit-btn">
+            <input type="submit" value="save">
+          </div>
+        </form>
+          </div>
+               </div>
+           </div>
+
+
+{% endblock %}
