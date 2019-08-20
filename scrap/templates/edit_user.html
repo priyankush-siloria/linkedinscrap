@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section">
+          
+  
+          <form class="form-horizontal main-box-section-form" action="" method="post">
+            {% csrf_token %}
+              <div class="box-body">
+                <h3>Linked account information</h3>
+
+                {% for users in update %}
+                
+                <div class="form-group main-box-section-form-one">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Email  :</label>
+
+                    
+                    <input type="email" class="form-control" name="email" id="inputEmail3" value="{{ users.email }}">
+                    </div>
+                <div class="form-group main-box-section-form-one">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password  :</label>
+
+                   
+                    <input type="password" class="form-control" name="password" id="inputPassword3" value=" {{ users.password }}" >
+
+                  
+                </div>
+
+                 <input type="hidden" name="auto_id" value="{{ user.id}}">
+    
+
+                {% endfor %}
+
+              
+                
+
+               
+              </div>
+              <!-- /.box-body -->
+              
+
+                <button type="submit" class="btn btn-info pull-right">save</button>
+            
+             
+              <!-- /.box-footer -->
+            </form>
+
+        
+          </div>
+
+
+               </div>
+           </div>
+    <!-- /.content -->
+
+
+  <!-- /.content-wrapper -->
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section-approved">
+          <div class="box-header box-main-header-sub-content-approved">
+              <a href="#">Approved Data</a>
+              </div>
+      
+              <div class="box-body box-main-body">
+              <table id="example2" class="table table-bordered table-hover approved-database">
+               
+                <thead>
+                
+             <tr>
+               <th>ID</th>
+                  <th>COMPANY NAME</th>
+                  <th>NAME</th>
+                  <th>SENIORITY LEVEL</th>
+                  <th>FUNCTION</th>
+                 <th>DEGREE</th>
+                 <th>GRAD. YEAR START</th>
+                 <th>GRAD. YEAR END</th>
+                 <th>URL</th>
+                 <th>ENTRY DATE</th>
+                 <th>AUTOMATION NAME</th>
+                 <th>DUPLICATE</th>
+                
+                 
+
+                 
+
+                </tr>
+                </thead>
+                <tbody>
+                  {% for datas in scraped_data %}
+                <tr>
+                  <td> idddd </td>
+      
+                  <td>{{ datas.companyname }}</td>
+                  <td>{{ datas.name }}</td>
+                  <td>{{ datas.senioritylevel }}</td>
+                  <td>{{ datas.function }}</td>
+                  <td>{{ datas.degree }}</td>
+                  <td>{{ datas.gradyearstart }}</td>
+                   <td>{{ datas.gradyearend }}</td>
+                   <td><a href="{{ datas.url }}" target="_blank">Go to profile</a></td>
+                   <td>{{ datas.dateofentry }}</td>
+                    <td>{{ datas.automation.name }}</td>
+                     <td>
+                       {% if datas.isduplicated %}
+                        Yes
+                      {% else %}
+                        No
+                      {% endif %}
+                     </td>
+                      
+           
+                </tr>
+                {% endfor %}
+
+              
+                
+                </tbody>
+              </table>
+
+
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+
+
+
+          </div>
+
+
+  <!-- /.content-wrapper -->
+{% endblock %}

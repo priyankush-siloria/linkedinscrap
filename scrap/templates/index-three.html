@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section-approved">
+          <div class="box-header box-main-header-sub-content-approved">
+              <a href="#">Approve and add to database</a>
+              </div>
+      
+              <div class="box-body box-main-body">
+              <table id="example2" class="table table-bordered table-hover">
+               
+                <thead>
+                
+             <tr>
+               <th>Automation Name</th>
+                  <th>Geography</th>
+                  <th>Seniority level</th>
+                  <th>Year at company</th>
+                  <th>function</th>
+                 <th>Add</th>
+                 <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Automation Name (frequency)</td>
+                  <td>x</td>
+                  <td>y</td>
+                  <td>z</td>
+                  <td>a</td>
+                  <td><a class="play" href="#">Add</a></td>
+                   <td><a class="pause" href="#">Remove</a></td>
+                 
+                </tr>
+
+                <tr>
+                  <td>VP sales(Every 3 weeks)</td>
+                   <td>Montreal</td>
+                  <td>VP</td>
+                  <td>1 to 2 years</td>
+                  <td>Sales</td>
+                
+                     <td><a class="play" href="#">Add</a></td>
+                   <td><a class="pause" href="#">Remove</a></td>
+                </tr>
+
+                <tr>
+                   <td>VP sales ver 2(Every 1 week)</td>
+                  <td>Montreal</td>
+                  <td>VP</td>
+                  <td>2 to 4 years</td>
+                  <td>Sales</td>
+                          <td><a class="play" href="#">Add</a></td>
+                   <td><a class="pause" href="#">Remove</a></td>
+                </tr>
+
+                <tr>
+                   <td>Director sales(Every 1 week)</td>
+                    <td>Montreal</td>
+                    <td>Director</td>
+                  <td>3 to 5 years</td>
+                  <td>Sales</td>
+               
+                           <td><a class="play" href="#">Add</a></td>
+                   <td><a class="pause" href="#">Remove</a></td>
+                </tr>
+
+                
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+
+       </div>
+
+
+ 
+  <!-- /.content-wrapper -->
+  {% endblock %}

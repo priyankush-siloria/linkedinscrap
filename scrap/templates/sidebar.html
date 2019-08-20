@@ -1,0 +1,33 @@
+{% load static % }
+ <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+     
+     <ul class="sidebar-menu tree" data-widget="tree">
+      
+        <li class="treeview">
+          <a href="#" style="border-left-color:#1e282c;"><i class="fa fa-dashboard"></i> 
+            <!-- <i class="fa fa-dashboard"></i> --> <span>Automation</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="{% url 'index' %}"><i class="fa fa-circle-o"></i> All automations</a></li>
+            <li><a href="{% url 'add' %}"><i class="fa fa-circle-o"></i> Add automations</a></li>
+            <li><a href="{% url 'show' %}"><i class="fa fa-circle-o"></i> Pending approval lists</a></li>
+          </ul>
+        </li>
+
+         <li class="linked-account"><a href="{% url 'linked' %}"><i class="fa fa-laptop"></i><span>Linked account</span></a></li>
+          
+          <li class="user"><a href="{% url 'user' %}"><i class="fa fa-user"></i><span>LinkedIn Account</span></a></li>
+          <li class="Database"><a href="{% url 'alldata' %}"><i class="fa fa-table"></i><span>Scraped Data</span></a></li>
+          <li class="Database"><a href="{% url 'database' %}"><i class="fa fa-table"></i><span>Approved Data</span></a></li>
+          <li class="Database"><a href="{% url 'reject' %}"><i class="fa fa-table"></i><span>Rejected Data</span></a></li>
+      </ul>
+       
+    </section>
+    <!-- /.sidebar -->
+  </aside>

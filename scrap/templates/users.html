@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section">
+            <div class="box-header box-main-header">
+              <h3 class="box-title">USERS DETAILS</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body box-main-body">
+              <table id="example2" class="table table-bordered table-hover">
+               
+                <thead>
+                
+             <tr>
+                  <th>EMAILS</th>
+                  <th>PASSWORDS</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {% for users in user%}
+                  <tr>
+                    <td>{{ users.email }}</td>
+                     <td>{{ users.password }}</td>
+                     <td><a class="edit" data-id="" href="{% url 'edit_user' users.id  %}">Edit</a></td>
+                       <td><a class="deleteuser" href="javascript:void(0)"  data-id="{{ users.id }}">delete</a></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+              </div>
+              
+
+
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /.col -->
+   
+  <!-- /.content-wrapper -->
+{% endblock %}  
