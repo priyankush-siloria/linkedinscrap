@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section">
+            <div class="messages">
+              {% if messages %}
+                  {% for message in messages %}
+                  <p>{{ message }}</p>
+                  {% endfor %}
+              {% endif %}
+            </div>
+          <div class="box-header box-main-header-sub-content">
+              <h3 class="box-title">Add automations</h3>
+          </div>
+      
+           <form class="box-main-section-form-input-section" action="{% url 'add' %}" method="post">
+            {% csrf_token %}
+            <div class="combine-group-section">
+            <label class="name">NAME</label>
+            <input type="text" name="name" value="" placeholder="" required>
+          </div>
+            <div class="combine-group-section">
+            <label class="Emails">User</label>
+               <select name="users">
+                  {% for users in user %}
+                      <option value="{{ users.id }}">{{ users.email }}</option>
+                  {% endfor %}
+             </select>
+            </div>
+          <div class="combine-group-section">
+            <label class="name">Geography</label>
+            <select name="geography">
+              <option value="0">Don't Apply</option>
+              {% for location in locations %}
+              <option value="{{ location.id }}">{{ location.title|title }}</option>
+              {% endfor %}
+            </select>
+              </div>
+                   <div class="combine-group-section">
+            <label class="name">Seniority level</label>
+            <select name="srlevel">
+              <option value="0">Don't Apply</option>
+              {% for level in srlevel %}
+              <option value="{{ level.id }}">{{ level.title|upper }}</option>
+              {% endfor %}
+            </select>
+              </div>
+
+     <div class="combine-group-section">
+            <label class="name">Years at company</label>
+            <select name="period">
+              <option value="0">Don't Apply</option>
+              {% for time in period %}
+              <option value="{{ time.id }}">{{ time.title|title }}</option>
+              {% endfor %}
+            </select>
+              </div>
+
+              <div class="combine-group-section">
+                <label class="name">Years of Experience</label>
+                <select name="experience">
+                  <option value="0">Don't Apply</option>
+                  {% for time in year_of_experience %}
+                  <option value="{{ time.id }}">{{ time.title|title }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="combine-group-section">
+            <label class="name">function</label>
+            <select name="functions">
+              <option value="0">Don't Apply</option>
+              {% for function in functionatcom %}
+              <option value="{{ function.id }}">{{ function.title|title }}</option>
+              {% endfor %}
+            </select>
+              </div>
+
+
+              <div class="combine-group-section-main-two">
+            <label class="name">frequency day</label>
+            <div class="combine-group-section-main-three">
+            <h3>Day</h3>
+            <select name="day">
+              {% for choice in day_form.days_choices.field.choices %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+              <div class="combine-group-section-main-three four">
+                <h3>Rate</h3>
+            <select name="rate">
+              {% for choice in rate_form.rate_choices.field.choices %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+              </div>
+            </div>
+           
+
+
+         
+
+          <div class="combine-group-section-submit-btn">
+            <input type="submit" value="save">
+          </div>
+          </div>
+               </div>
+           </div>
+
+{% endblock %}

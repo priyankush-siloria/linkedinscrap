@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-main-section">
+            <div class="box-header box-main-header">
+              <h3 class="box-title">AUTOMATIONS</h3>
+              <div class="box-title-button">
+                <a href="{% url 'add' %}">Add automations</a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body box-main-body">
+              <table id="example1" class="table table-bordered table-hover">
+               
+                <thead>
+                
+             <tr>
+               <th>Automation Name</th>
+                  <th>Geography</th>
+                  <th>Seniority level</th>
+                  <th>Year at company</th>
+                  <th>Year of Experience</th>
+                  <th>function</th>
+                  <th>instance</th>
+                  <th>schedule</th>
+                  <th>Pause</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {% for automation in automations %}
+                  <tr>
+                    <td>{{ automation.name }}({{ automation.get_rate_display }})</td>
+                     <td>
+                      {% if automation.geography_status %}
+                        {{ automation.geography.title }}
+                     {% else %}
+                      Not selected
+                     {% endif %}
+                     </td>
+                    <td>
+                    {% if automation.srlevel_status %}
+                      {{ automation.srlevel.title }}
+                    {% else %}
+                      Not selected
+                     {% endif %}
+                   </td>
+                    <td>
+                      {% if automation.period_status %}
+
+                      {{ automation.period.title }}
+                      {% else %}
+                      Not selected
+                     {% endif %}
+                    </td>
+                    <td>
+                      {% if automation.yearsofexperience_status %}
+
+                      {{ automation.yearsofexperience.title }}
+                      {% else %}
+                      Not selected
+                     {% endif %}
+                    </td>
+                    <td>
+                      {% if automation.functionsatcompanyl_status %}
+                        
+
+                      {{ automation.functionsatcompany.title }}
+                      {% else %}
+                      Not selected
+                     {% endif %}
+                    </td>
+                    <td><a class="play" href="javascript:void(0)" id="{{automation.id}}">Play</a></td>
+                     <td><a class="schedule" href="javascript:void(0)" id="{{automation.id}}">Play</a></td>  
+                    
+                      <input type="hidden" name="" class="linkedin-user" value="{{automation.user_id}}">
+                     <td><a class="pause" href="javascript:void(0)" id="{{automation.id}}">Pause</a></td>
+                      <td><a class="edit" data-id="" href="{% url 'edit_automation' automation.id  %}">Edit</a></td>
+                       <td><a class="delete" href="javascript:void(0)"  data-id="{{automation.id}}">delete</a></td>
+                  </tr>
+
+                {% endfor %}
+                </tbody>
+              </table>
+              </div>
+              
+
+
+
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <!-- /.col -->
+   
+  <!-- /.content-wrapper -->
+{% endblock %}  
+
+{% block script %}
+<script type="text/javascript">
+  $('.schedule').click(function(){
+  var id = $(this).attr('id');
+  alert("Automation is scheduled.");
+  $.ajax({
+      url: 'add-cron',
+      method: 'GET',
+      data: {'automation_id':id},
+      success: function(data) 
+      {
+        console.log("success");
+      }
+
+      });
+});
+$('.pause').click(function(){
+  var id = $(this).attr('id');
+  alert(id);
+  $.ajax({
+      url: 'pause',
+      method: 'GET',
+      data: {'automation_id':id},
+      success: function(data) 
+      {
+        if(data.status==true){
+          alert('Automation is stoped successfully.')
+        }
+        else{
+          console.log("error");
+        }
+        
+      }
+
+      });
+});
+</script>
+{% endblock %}
